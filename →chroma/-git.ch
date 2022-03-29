@@ -326,46 +326,6 @@ fsh__git__chroma__def=(
     ## }}}
 
     ##
-    ## CHECKOUT
-    ##
-    ## {{{
-
-    subcmd:checkout "CHECKOUT_BRANCH_0_opt^ //
-                        CHECKOUT_0_opt // FILE_OR_DIR_OR_BRANCH_OR_COMMIT_1_arg // FILE_#_arg //
-                        FILE_#_arg // NO_MATCH_#_opt"
-
-    "CHECKOUT_BRANCH_0_opt^" "
-                (-b|-B|--orphan)
-                        <<>> NO-OP // ::→chroma/main-chroma-std-aopt-action
-             || (-b|-B|--orphan):del
-                        <<>> FILE_OR_DIR_OR_BRANCH_OR_COMMIT_1_arg // FILE_#_arg // FILE_#_arg
-             || (-b|-B|--orphan):add
-                        <<>> NEW_BRANCH_1_arg // COMMIT_2_arg // NO_MATCH_#_arg"
-
-    NEW_BRANCH_1_arg "NO-OP // ::→chroma/-git-verify-correct-branch-name"
-
-    COMMIT_2_arg "NO-OP // ::→chroma/-git-verify-commit"
-
-    CHECKOUT_0_opt "
-                --conflict=
-                        <<>> NO-OP // ::→chroma/main-chroma-std-aopt-action
-                        <<>> NO-OP // ::→chroma/main-chroma-std-aopt-ARG-action
-             || (-q|--quiet|--progress|--no-progress|-f|--force|--ours|--theirs|
-                 -b|-B|-t|--track|--no-track|-l|--detach|--orphan|
-                 --ignore-skip-worktree-bits|-m|--merge|-p|--patch|
-                 --ignore-other-worktrees|--no-ignore-other-worktrees)
-                        <<>> NO-OP // ::→chroma/main-chroma-std-aopt-action"
-
-    # A generic action
-    COMMIT_1_arg "NO-OP // ::→chroma/-git-verify-commit"
-
-    # Unused
-    FILE_OR_BRANCH_OR_COMMIT_1_arg "NO-OP // ::→chroma/-git-file-or-ubranch-or-commit-verify"
-    FILE_OR_DIR_OR_BRANCH_OR_COMMIT_1_arg "NO-OP // ::→chroma/-git-file-or-dir-or-ubranch-or-commit-verify"
-
-    ## }}}
-
-    ##
     ## REMOTE
     ##
     ## {{{
@@ -607,7 +567,6 @@ fsh__git__chroma__def=(
     FAST_HIGHLIGHT[chrome-git-got-msg1]=0
     FAST_HIGHLIGHT[chrome-git-got-anymsg]=0
     FAST_HIGHLIGHT[chrome-git-occurred-double-hyphen]=0
-    FAST_HIGHLIGHT[chroma-git-checkout-new]=0
     FAST_HIGHLIGHT[chroma-git-fetch-multiple]=0
     FAST_HIGHLIGHT[chroma-git-branch-change]=0
     FAST_HIGHLIGHT[chroma-git-option-with-argument-active]=0
